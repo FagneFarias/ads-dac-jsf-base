@@ -7,7 +7,7 @@ import java.util.UUID;
 public class Pessoa {
 
     private String nome;
-    private long id;
+    private Long id;
     private CPF cpf;
     private Dependente dependente;
 
@@ -19,6 +19,14 @@ public class Pessoa {
         this.id = System.currentTimeMillis();
         this.cpf = new CPF(cpf);
     }
+
+    public Pessoa(String nome, Long id, CPF cpf, Dependente dependente) {
+        this.nome = nome;
+        this.id = id;
+        this.cpf = cpf;
+        this.dependente = dependente;
+    }
+
     public void alterarNome() {
         this.nome = this.nome.toUpperCase();
     }
