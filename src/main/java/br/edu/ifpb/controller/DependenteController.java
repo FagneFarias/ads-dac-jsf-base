@@ -10,33 +10,31 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 
-@Named("DependentController")
+@Named("controllerDependente")
 @SessionScoped
-
 public class DependenteController implements Serializable {
 
     private DependenteInterface dependenteInterface;
-    private Dependente dependente;
+    private Dependente dependente = new Dependente();
 
     public DependenteController() {
         this.dependenteInterface = (DependenteInterface) new DependenteJDBC();
     }
 
     public String salvarDependente(){
-
         if(this.dependente.getId() > 0){
-            this.dependenteInterface.novoDependente(this.dependente);
-        } else{
             this.dependenteInterface.atualizarDependente(this.dependente);
+        } else{
+            this.dependenteInterface.novoDependente(this.dependente);
         }
         this.dependente = new Dependente();
 
-        return "/Dependente/list?faces-redirect=true";
+        return "/dependente/list?faces-redirect=true";
     }
 
     public String updateDependente( Dependente dependente){
         this.dependente = dependente;
-        return "/Dependente/edit?faces-redirect=true";
+        return "/dependente/edit?faces-redirect=true";
 
     }
 
@@ -47,8 +45,9 @@ public class DependenteController implements Serializable {
 
     public String deleteDependente(Dependente dependente) {
         this.dependenteInterface.excluirDependente(dependente);
-        return "/Dependente/list?faces-redirect=true";
+        return "/dependente/list?faces-redirect=true";
     }
+
     public Dependente getDependente() {
         return dependente;
     }
@@ -56,5 +55,4 @@ public class DependenteController implements Serializable {
     public void setDependente(Dependente dependente) {
         this.dependente = dependente;
     }
-
 }

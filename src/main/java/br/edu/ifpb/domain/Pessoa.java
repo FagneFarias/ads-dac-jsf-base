@@ -11,6 +11,9 @@ public class Pessoa {
     private CPF cpf;
     private Dependente dependente;
 
+    public Pessoa() {
+    }
+
     public Pessoa(String nome) {
         this(nome, "11111111111");
     }
@@ -56,7 +59,7 @@ public class Pessoa {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

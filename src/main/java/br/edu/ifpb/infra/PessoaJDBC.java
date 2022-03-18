@@ -20,7 +20,6 @@ public class PessoaJDBC implements PessoasInterface {
 
     private static final Logger logger = Logger.getLogger(PessoaJDBC.class.getName());
     public PessoaJDBC() {
-
         try {
             Class.forName("org.postgresql.Driver");
             this.connection = DriverManager.getConnection(
@@ -37,7 +36,6 @@ public class PessoaJDBC implements PessoasInterface {
         try{
             List<Pessoa> pessoas= new ArrayList<>();
             ResultSet resultQuery = connection.prepareStatement( "SELECT * FROM pessoa").executeQuery();
-//            next percore o ResultSet e reforna false quando estar na ultima posição
             while ( resultQuery.next() ){
                 pessoas.add(converterPessoa(resultQuery));
                 System.out.println(pessoas);
@@ -61,7 +59,7 @@ public class PessoaJDBC implements PessoasInterface {
     @Override
     public void nova(Pessoa pessoa) {
         try{
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO Pessoa (nome, cpf) VALUES (?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO Pessoa (nome, CPF) VALUES (?, ?)");
 
             statement.setString(1, pessoa.getNome());
             statement.setString(2, pessoa.getCpf().toString());
@@ -75,7 +73,7 @@ public class PessoaJDBC implements PessoasInterface {
     @Override
     public void atualizar(Pessoa pessoa) {
         try{
-            PreparedStatement statement = connection.prepareStatement("UPDATE banda SET nome=?,cpf=? WHERE id=?");
+            PreparedStatement statement = connection.prepareStatement("UPDATE pessoa SET nome=? ,CPF=? WHERE id=?");
             statement.setString(1, pessoa.getNome());
             statement.setString(2, pessoa.getCpf().toString());
             statement.setLong(3, pessoa.getId());
@@ -88,7 +86,7 @@ public class PessoaJDBC implements PessoasInterface {
     @Override
     public void excluir(Pessoa pessoa) {
         try{
-            PreparedStatement statement = connection.prepareStatement("DELETE FROM banda WHERE id=?");
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM pessoa WHERE id=?");
             statement.setLong(1, pessoa.getId());
             statement.executeQuery();
         } catch (SQLException e){
@@ -102,7 +100,7 @@ public class PessoaJDBC implements PessoasInterface {
             List<Pessoa> pessoa= new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM pessoa WHERE cpf = ?");
+                    "SELECT * FROM pessoa WHERE CPF = ?");
 
             statement.setString(1, cpf);
             statement.executeQuery();
@@ -123,11 +121,11 @@ public class PessoaJDBC implements PessoasInterface {
     public List<Dependente> localizarDependenteComId(Long idPessoa) {
         try{
 
-            logger.log(Level.INFO, "Banda busca Entrando ");
-            List<Dependente> dependentes = null;
+            logger.log(Level.INFO, "Dependente busca Entrando ");
+            List<Dependente> dependentes = new ArrayList<>();
 
             PreparedStatement statement = connection.prepareStatement(
-                    "DISTINCT SELECT * FROM pessoa_dependente WHERE id_pessoal= ?");
+                    "SELECT * FROM pessoa_dependente pd INNER JOIN dependente d ON pd.id_dependente = d.id INNER JOIN pessoa p ON pd.id_pessoa = p.id WHERE p.id = ? ");
 
             statement.setLong(1, idPessoa);
             statement.executeQuery();
@@ -145,27 +143,6 @@ public class PessoaJDBC implements PessoasInterface {
             return null;
         }
     }
-
-    @Override
-    public Dependente localizarDependenteComId(String idPessoa) {
-        return null;
-    }
-
-    @Override
-    public Pessoa localizarPessoaComId(long idPessoa) {
-        return null;
-    }
-
-    @Override
-    public List<Dependente> todosOsDepentendes() {
-        return null;
-    }
-
-    @Override
-    public void novo(Dependente dependente) {
-
-    }
-
 
     public Dependente converterDependentes (ResultSet result) throws SQLException{
         Integer id = result.getInt("id");
