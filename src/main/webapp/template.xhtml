@@ -21,24 +21,25 @@
 </h:head>
 
 <h:body>
-<!--    <nav class="light-blue lighten-1" role="navigation">-->
-<!--        <div class="nav-wrapper container">-->
-<!--            <p:megaMenu orientation="horizontal" autoDisplay="false" class="light-blue lighten-1" style="border: none">-->
-<!--                <p:submenu label="Menu">-->
-<!--                    <p:column>-->
-<!--                        <p:submenu label="">-->
-<!--                            <p:menuitem value="Todas as pessoas" outcome="/pessoa/list"/>-->
-<!--                            <p:menuitem value="Cadastrar pessoas" outcome="/pessoa/edit"/>-->
-<!--&lt;!&ndash;                            <p:menuitem value="Buscar por cpf" outcome="/pessoa/search"/>&ndash;&gt;-->
-<!--                            <p:menuitem value="Todos os dependentes" outcome="/dependente/list"/>-->
-<!--                            <p:menuitem value="Cadastrar dependentes" outcome="/dependente/edit"/>-->
-<!--                        </p:submenu>-->
-<!--                    </p:column>-->
-<!--                </p:submenu>-->
-
-<!--            </p:megaMenu>-->
-<!--        </div>-->
-<!--    </nav>-->
+    <nav class="black lighten-1" role="navigation">
+        <div class="nav-wrapper container">
+            <p:megaMenu orientation="horizontal" autoDisplay="false" class="light-blue lighten-1" style="border: none">
+            <p:submenu label="Menu">
+                <p:column>
+                    <p:submenu label="Menu">
+                        <p:menuitem value="Listagem de pessoas" outcome="/pessoa/list"/>
+                        <p:menuitem value="Adicionar pessoa" outcome="/pessoa/edit"/>
+                        <p:menuitem value="Buscar pessoa" outcome="/pessoa/search"/>
+                        <p:menuitem value="Listagem de pessoas em Memória" outcome="/pessoaEmMemoria/list"/>
+                        <p:menuitem value="Adicionar pessoas em Memória" outcome="/pessoaEmMemoria/edit"/>
+                        <p:menuitem value="Listagem de dependentes" outcome="/dependente/list"/>
+                        <p:menuitem value="Adicionar dependente" outcome="/dependente/edit"/>
+                    </p:submenu>
+                </p:column>
+            </p:submenu>
+            </p:megaMenu>
+        </div>
+    </nav>
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
             <br></br>

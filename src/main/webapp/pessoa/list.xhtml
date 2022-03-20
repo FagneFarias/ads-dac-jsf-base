@@ -9,7 +9,7 @@
 
     <ui:define name="container-template">
         <h:head>
-            <title>Title</title>
+            <title>Facelet Title</title>
         </h:head>
         <h:body>
 
@@ -33,11 +33,12 @@
                     </h:column>
 
                     <h:column>
-                            <p:outputLabel value="Dependentes"/>
+                        <f:facet name ="header">Dependentes</f:facet>
                             <p:selectOneMenu id="labeled"
-                                             alwaysDisplayLabel="true">
+                                             alwaysDisplayLabel="true" styleClass="ancho200">
+                                <f:selectItem itemLabel="Dependentes" itemValue="" noSelectionOption="true" />
                                 <f:selectItems value="#{pessoaControler.listarDependentePorIdPessoa(pessoa.id)}" var="dep"
-                                               itemLabel="#{dep.nome}" itemValue="#{dep}"/>/>
+                                               itemLabel="#{dep.nome}" itemValue="#{dep}"/>
                             </p:selectOneMenu>
                     </h:column>
 
@@ -48,7 +49,7 @@
 
                     <h:column>
                         <f:facet name ="header">editar</f:facet>
-                        <h:commandButton value="+" action="#{pessoaControler.editar(pessoa)}" class="btn"/>
+                        <h:commandButton value="⚙" action="#{pessoaControler.editar(pessoa)}" class="btn"/>
                     </h:column>
                 </h:dataTable>
             </h:form>

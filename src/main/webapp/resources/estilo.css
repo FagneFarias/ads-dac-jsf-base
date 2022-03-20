@@ -1,13 +1,13 @@
 .estilo {
     border: 2px solid;
-    color: blue;
+    color: black;
     border-radius: 15px;
     padding: 100px;
 }
 
 .campo {
     padding: 0px;
-    color: darkorange;
+    color: darkcyan;
 }
 
 #rodape{
